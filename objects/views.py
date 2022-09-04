@@ -1,21 +1,22 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+
+def device(request):
+    a=0
+    return render(request,"device.html",None)
+
+def partner(request):
+    return render(request,"partner.html",None)
+
+def worker(request):
+    return render(request,"worker.html",None)
 
 def create_device(request):
-    return render(
-        request,
-        "new_device.html",
-        {
-            "name":"a",
-            "serie":"b",
-            "description":"c"
-        }
-        )
+    a=0
+    return render(request,"device.html",None)
 
 def create_partner(request):
-    return render(request,"new_partner.html",None)
+    return render(request,"partner.html",None)
 
-def create_people(request):
-    return render(request,"new_people.html",None)
-
-def delete_object(request):
-    return render(request,"object.html",None)
+def create_worker(request):
+    return render(request,"worker.html",None)

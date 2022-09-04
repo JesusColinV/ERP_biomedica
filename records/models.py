@@ -1,26 +1,50 @@
-from pydoc import describe
+from time import timezone
 from django.db import models
+from objects.models import Area, Device_extern, Device_intern, Worker, Provider
 
 # Create your models here.
-class Orden(models.Model):
-    fecha = models.DateField()
-    hora = models.TimeField()
-    description = models.CharField(max_length=100) 
-    area = models.CharField(max_length=20)
-    equipo = models.CharField(max_length=20)
-    evaluacion = models.CharField(max_length=20)
-    initial_state = models.CharField(max_length=20)
-    final_state = models.CharField(max_length=20)
+
+class Evaluations(models.Model):
+    description = models.CharField(max_length=150)
+
+
     
 class Reporte(models.Model):
-    fecha = models.DateField()
-    hora = models.TimeField()
-    reporta = models.CharField(max_length=20)
-    atiende = models.CharField(max_length=20)
-    reponsable = models.CharField(max_length=20)
+    date = models.DateField()
+    time = models.TimeField()
+    reporta = models.ForeignKey(Area, on_delete=models.CASCADE)
+    atiende = models.CharField(max_length=100) 
+    reponsable = models.ForeignKey(Worker, on_delete=models.CASCADE)
     
-class Salidas(models.Model):
-    equipo = models.CharField(max_length=20) 
-    provedor = models.CharField(max_length=20)
-    fecha = models.DateField()
-    hora = models.TimeField()
+    def __str__(self):
+        return self.id
+class Orden(models.Model):
+    report = models.ForeignKey(Reporte, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    description = models.CharField(max_length=100) 
+    equipo = models.ForeignKey(Device_intern, on_delete=models.CASCADE)
+    evaluacion = models.CharField(max_length=100) 
+    initial_state = models.CharField(max_length=100) 
+    final_state = models.CharField(max_length=100) 
+    
+    def __str__(self):
+        return self.id
+    
+class Salida(models.Model):
+    equipo = models.ForeignKey(Device_extern, on_delete=models.CASCADE)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    
+    def __str__(self):
+        return self.equipo
+
+class Salida_interno(models.Model):
+    equipo = models.ForeignKey(Device_intern, on_delete=models.CASCADE) 
+    date = models.DateField()
+    time = models.TimeField()
+    
+    def __str__(self):
+        return self.equipo
+    

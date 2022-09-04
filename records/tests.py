@@ -1,9 +1,10 @@
 from django.test import TestCase
+from .models import *
 
-# Create your tests here.
 class TestRecords(TestCase):
     
     def setup():
+        
         pass
     
     def test_view_logbook_reports():

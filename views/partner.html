@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}" ></script>
+    <title>Document</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h2>Proveedor</h2>
+        <h4>
+            Antes de registrar un proveedor debes registrar el equipo que tiene asociado
+        </h4>
+        <form action = "{% url 'partner' %}" method = "GET">
+            <p>nombre:  <input type="text" name="name" id="name_id"></p>
+            <p>telefonon:  <input type="text" name="name" id="name_id"></p>
+            <p>email:  <input type="text" name="name" id="name_id"></p>
+            <p>equipo:  <input type="text" name="name" id="name_id"></p>
+            <input type="button" value="Crear nuevo dispositivo">
+        </form>
+    </div>  
+</body>
+</html>
+
+<!--
+
+        Equipo = models.ForeignKey(Device_extern, on_delete=models.CASCADE)
+    
+    name = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20)
+    email = models.CharField(max_length=20)
+-->

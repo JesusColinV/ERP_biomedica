@@ -18,9 +18,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('device/', views.create_device),
-    path('partner/', views.create_partner),
-    path('people/', views.create_people),
-    path('object/', views.delete_object)
+    path('device/', views.device, name="device"),
+    path('partner/', views.partner, name="partner"),
+    path('worker/', views.worker, name="worker"),
 ]
 
